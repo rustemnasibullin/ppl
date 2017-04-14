@@ -1,0 +1,98 @@
+<html>
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script language='javascript' type='text/javascript'>
+
+function getPrice() {
+
+         var url="http://127.0.0.1:5000/ppl/getprice";
+         var cidv=document.forms['ppl'].cid.value;
+         var pidv=document.forms['ppl'].pid.value;
+         document.forms['ppl'].pid.value;
+
+         jQuery.get(url, {cid: cidv, pid:pidv} , function(data){
+             $("#info").html(data);
+         });
+
+
+};
+   
+function putContract() {
+var url="http://127.0.0.1:5000/ppl";
+var d="{\"CMD\":\"PUT_CONTRACT\",\"USER\":{\"CID\":1001,\"CNAME\":\"BOB\"},\"CONTRACT\":{\"ID\":4001,\"VID\":2001,\"TYPEOFPAYMENTTERM\":0}}";
+
+jQuery.post(url,d,function( data ) {
+       $("#info").html(data);
+  }
+);
+
+};   
+
+</script>
+
+<body>
+<center> 
+<br/><br/> 
+
+
+
+
+<h1>Purchase Platform Demonstration. Bob Logged In.</h1>  <br/><br/><br/><br/>   
+
+<h3>Product Catalogue.</h3>
+
+<form name="ppl">
+<input type="hidden" name="cid" value="1001">
+<table BORDER=1>
+<tr><td>Product Id</td><td>Product Name</td><td>Vendor</td><td>Price,$</td></tr>
+<tr><td><input type=radio name="pid" value=3001>3001</radio></td><td>BOEING-747-300</td><td>Boeing</td><td>1000</td></tr>
+<tr><td><input type=radio name="pid" value=3002>3002</radio></td><td>BOEING-787-Dreamliner</td><td>Boeing</td><td>3000</td></tr>
+<tr><td><input type=radio name="pid" value=3003>3003</radio></td><td>A-380</td><td>Airbus</td><td>2500</td></tr>
+<tr><td><input type=radio name="pid" value=3004>3004</radio></td><td>DC-3</td><td>MCDONNEL DOUGLAS</td><td>2120</td></tr>
+<tr><td><input type=radio name="pid" value=3005>3005</radio></td><td>Cessna-172</td><td>Bombardie</td><td>1700</td></tr>
+</table>
+
+</form>
+
+<br/>  
+<a href="javascript:getPrice()">AsK For Price</a>&nbsp;&nbsp;   
+<a href="javascript:putContract()">Register New Contract with Boeing Company.</a>   
+<br/>  
+<br/>  
+<br/>  
+<br/>  
+
+
+<table>
+<tr>
+<td>
+Result:
+</td>
+
+<td>
+<table border="1">
+<tr>
+<td>
+<div id="info">
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+</div>
+</td>
+</tr>
+</table>
+
+
+
+</td>
+
+</tr>
+
+</table>
+
+</center>
+</body>
+</html>
